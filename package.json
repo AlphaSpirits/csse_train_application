@@ -1,17 +1,23 @@
 {
   "name": "trial1",
   "version": "1.0.0",
-  "description": "CSSE train trial one",
-  "main": "index.js",
+  "description": "Ticketing System for a Public Transport Network",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon server.js"
   },
-  "author": "tharuka amaraweera",
+  "author": "CSSE_WE_26",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "config": "^3.2.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jquery-ui-dist": "^1.12.1",
+    "mocha": "^6.2.1",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.3",
     "morgan": "^1.9.1"
   },

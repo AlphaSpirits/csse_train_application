@@ -16,6 +16,16 @@ const train = require("./routes/admin/trains");
 //     }
 //   );
 
+/*
+mongoose.connect(
+    "mongodb://localhost/csse_1",
+
+    {
+      useNewUrlParser: true
+    }
+  );
+*/
+
 mongoose.connect(
     "mongodb+srv://admin:admin123@cssetraindb-sqygr.mongodb.net/test?retryWrites=true&w=majority",
     {
@@ -23,14 +33,29 @@ mongoose.connect(
     }
 );
 
+
+
+
 //using dependencies
 app.use(morgan("dev"));
 app.use(bodyPorser.urlencoded({ extended: false }));
 app.use(bodyPorser.json());
 app.use(cors());
 
+
+
+
+
 //using routes
 app.use("/train", train);
+app.use("/api", require("./routes/api/inspectors"));
+app.use("/api", require("./routes/api/journeyDetails"));
+app.use("/api", require("./routes/api/invalidjourneydetails"));
+
+//error handling middleware
+app.use(function(err, req, res, next) {
+  res.status(422).send({ error: err.message });
+});
 
 app.use((req, res, next) => {
     const error = new Error("Not Found");
