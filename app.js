@@ -5,8 +5,9 @@ const bodyPorser=require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-//calling routes
+//Importing routes
 const train = require("./routes/admin/trains");
+const UserRoutes = require("./routes/users/user_route");
 
 //db connection
 // mongoose.connect(
@@ -34,9 +35,7 @@ mongoose.connect(
 );
 
 
-
-
-//using dependencies
+//use of dependencies
 app.use(morgan("dev"));
 app.use(bodyPorser.urlencoded({ extended: false }));
 app.use(bodyPorser.json());
@@ -46,11 +45,12 @@ app.use(cors());
 
 
 
-//using routes
+//use of routes
 app.use("/train", train);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
+app.use("/user", UserRoutes);
 
 //error handling middleware
 app.use(function(err, req, res, next) {
