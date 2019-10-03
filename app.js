@@ -7,24 +7,9 @@ const cors = require('cors');
 
 //calling routes
 const train = require("./routes/admin/trains");
+const addcredits = require("./routes/Passenger/add_credits");
 
 //db connection
-// mongoose.connect(
-//     "mongodb+srv://tharuka:tharuka12345@afprojectstartsmart-ycawy.mongodb.net/test?retryWrites=true&w=majority",
-//     {
-//       useNewUrlParser: true
-//     }
-//   );
-
-/*
-mongoose.connect(
-    "mongodb://localhost/csse_1",
-
-    {
-      useNewUrlParser: true
-    }
-  );
-*/
 
 mongoose.connect(
     "mongodb+srv://admin:admin123@cssetraindb-sqygr.mongodb.net/test?retryWrites=true&w=majority",
@@ -48,6 +33,7 @@ app.use(cors());
 
 //using routes
 app.use("/train", train);
+app.use("/addcredits", addcredits);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
