@@ -4,30 +4,27 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 
-const RouteDetailsSchema = new Schema({
+const vehicleDetailsSchema = new Schema({
+    Regnumber: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
     routeID: {
         type: String,
         required: true
     },
-    startingLocation: {
+    DriverID: {
         type: String,
         required: true
     },
-    destinationLocation: {
+    type: {
         type: String,
-        required: true
-    },
-    distance: {
-        type: Number,
-        required: true
-    },
-    fare: {
-        type: Number,
         required: true
     },
 });
 
-module.exports = RouteDetails = mongoose.model(
-    "routeDetails",
-    RouteDetailsSchema
-);
+module.exports = mongoose.model('vehicle', vehicleDetailsSchema);

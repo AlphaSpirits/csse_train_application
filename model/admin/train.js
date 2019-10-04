@@ -5,7 +5,7 @@ const trainScema = mongoose.Schema({
     startstation: { type: String, required: true },
     destination: { type: String, required: true },
     distance: { type: Number, required: true },
-    priceperkm: { type: Number, required: true }
+    fare: { type: Number, required: true }
 });
 
 module.exports = mongoose.model('trains', trainScema);

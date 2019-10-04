@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 //create inspectors schema and model
 const InspectorsScehma = new Schema({
-  usertype: {
+  assignedroute: {
     type: String,
-    required: [true, "User Type field is required"]
+    required: [true, "Assigned Route field is required"]
   },
   username: {
     type: String,
@@ -13,7 +13,7 @@ const InspectorsScehma = new Schema({
   },
   password: {
     type: String,
-    required: [true, "Password field is required"]
+    default: "123"
   },
   name: {
     type: String,
