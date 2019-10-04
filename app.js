@@ -44,6 +44,7 @@ app.use("/applyloan",applyloan);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
+app.use("/api", require("./routes/api/fineinformation"));
 app.use("/user", UserRoutes);
 app.use("/manager", ManagerRoutes);
 app.use("/localPassenger", LocalPassenger);

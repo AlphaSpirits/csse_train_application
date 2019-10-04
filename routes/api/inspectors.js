@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Inspector = require("../../model/transportManager/inspectors");
+
 var ObjectId = require("mongodb").ObjectID;
 
 //get data from db
