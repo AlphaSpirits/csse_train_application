@@ -7,10 +7,8 @@ const cors = require('cors');
 
 //Importing routes
 const train = require("./routes/admin/trains");
-const addcredits = require("./routes/Passenger/add_credits");
 const UserRoutes = require("./routes/users/user_route");
 const ManagerRoutes = require("./routes/users/managerroute");
-const LocalPassenger = require("./routes/users/local_passenger_route");
 const addcredits = require("./routes/local_passenger/add_credits");
 const extendexpiredate = require("./routes//foreign_passenger/extend_expiary_date");
 const applyloan=require("./routes/local_passenger/apply_loan");
