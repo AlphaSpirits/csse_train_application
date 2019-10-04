@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../model/users/user');
 const Manager = require('../../model/users/manager');
+const Localpassenger = require('../../model/users/local_passenger');
+const constants=require('../../constants');
+
 //Sign Up
 router.post('/signup', (req, res, next) => {
 
@@ -35,9 +38,55 @@ router.post('/signup', (req, res, next) => {
                         user
                             .save()
                             .then(result => {
-                                console.log(result)
+                               // console.log(result._id)
+                                const id_user = result._id
+                                console.log(id_user)
+                                //save manager data
+                                if(result.utype = 1){
+                                    const manager = new Manager({
+                                        _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
+                                        managerName: req.body.managerName,
+                                        ManagerAge: req.body.ManagerAge,
+                                        refUserId: id_user
+                                    });
+                                    manager
+                                        .save()
+                                }
+                                //save local passenger data
+                                if(result.utype = 2){
+                                    const localpassenger = new Localpassenger({
+                                        _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
+                                        lPassengerName: req.body.lPassengerName,
+                                        lPassengerAge: req.body.lPassengerAge,
+                                        lPassengerPhone: req.body.lPassengerPhone,
+                                        lPassengerNic: req.body.lPassengerNic,
+                                        loanstatus: constants.LOAN_STATUS,
+                                        finestatus: constants.FINE_STATUS,
+                                        cardtype: req.body.cardtype,
+                                        cardnumber: req.body.cardnumber,
+                                        amount: req.body.amount,
+                                        initialamountstatus: constants.INITIAL_AMAOUNT_STATUS,
+                                        loanamount: constants.LOAN_AMOUNT,
+                                        fineamount: constants.FINE_AMOUNT,
+                                        refUserId: id_user
+                                    });
+                                    localpassenger
+                                        .save()
+                                        .then(result => {
+                                            console.log(result)
+                                            res.status(201).json({
+                                                message: 'Local user has been created'
+                                            })
+                                        })
+                                        .catch(err => {
+                                            console.log(err)
+                                            res.status(500).json({
+                                                error: err
+                                            })
+                                        });
+                                }
                                 res.status(201).json({
-                                    message: 'User has been created'
+                                    message: 'User has been created',
                                 })
                             })
                             .catch(err => {
@@ -46,28 +95,6 @@ router.post('/signup', (req, res, next) => {
                                     error: err
                                 })
                             });
-                        //save manager data
-                        if(req.body.utype = 1){
-                            const manager = new Manager({
-                                _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
-                                managerName: req.body.managerName,
-                                ManagerAge: req.body.ManagerAge
-                            });
-                            manager
-                                .save()
-                                .then(result => {
-                                    console.log(result)
-                                    res.status(201).json({
-                                        message: 'Manager has been created'
-                                    })
-                                })
-                                .catch(err => {
-                                    console.log(err)
-                                    res.status(500).json({
-                                        error: err
-                                    })
-                                });
-                        }
                     }
                 })
             }
@@ -119,6 +146,40 @@ router.post('/login', (req, res, next) => {
             })
         });
 });
+//get users
+router.get("/", (req, res, next) => {
+    User.find()
+        .select("_id uname email password utype")
+        .exec()
+        .then(docs => {
+            const response = {
+                count: docs.length,
+                user: docs.map(doc => {
+                    return {
+                        _id:doc._id,
+                        uname: doc.uname,
+                        email: doc.email,
+                        password: doc.password,
+                        utype: doc.utype
+                    };
+                })
+            };
+            if (docs.length > 0) {
+                res.status(200).json(response);
+            } else {
+                res.status(404).json({
+                    message: "no entry found"
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 
 //delete user
 router.delete("/:userId", (req, res, next) => {
