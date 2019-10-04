@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 
-const RouteDetailsSchema = new Schema({
-    routeID: {
+const usertravelDetailsSchema = new Schema({
+    userID: {
         type: String,
+        required: true
+    },
+    journeryDate: {
+        type: Date,
         required: true
     },
     startingLocation: {
@@ -25,7 +29,11 @@ const RouteDetailsSchema = new Schema({
         type: Number,
         required: true
     },
+    routeName: {
+        type: String,
+        required: true
+    }
 });
 
 
-module.exports = mongoose.model('route', RouteDetailsSchema);
+module.exports = mongoose.model('historyuser', usertravelDetailsSchema);

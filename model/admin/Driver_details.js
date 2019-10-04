@@ -24,7 +24,4 @@ const DriverDetailsSchema = new Schema({
 
 });
 
-module.exports = RouteDetails = mongoose.model(
-    "routeDetails",
-    DriverDetailsSchema
-);
+module.exports = mongoose.model('Driver', DriverDetailsSchema);

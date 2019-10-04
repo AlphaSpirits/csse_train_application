@@ -11,7 +11,7 @@ router.post("/", (req, res, next) => {
       startstation: req.body.startstation,
       destination: req.body.destination,
       distance: req.body.distance,
-      priceperkm: req.body.priceperkm
+      fare: req.body.fare
     });
     train
       .save()
