@@ -10,6 +10,10 @@ const train = require("./routes/admin/trains");
 const addcredits = require("./routes/Passenger/add_credits");
 const UserRoutes = require("./routes/users/user_route");
 const ManagerRoutes = require("./routes/users/managerroute");
+const LocalPassenger = require("./routes/users/local_passenger_route");
+const addcredits = require("./routes/local_passenger/add_credits");
+const extendexpiredate = require("./routes//foreign_passenger/extend_expiary_date");
+const applyloan=require("./routes/local_passenger/apply_loan");
 const LocalPassenger = require("./routes/users/local_passengerroute");
 const ForeignPassenger = require("./routes/users/foreign_passenger_route");
 
@@ -36,6 +40,8 @@ app.use(cors());
 //use of routes
 app.use("/train", train);
 app.use("/addcredits", addcredits);
+app.use("/extentexpiarydate",extendexpiredate);
+app.use("/applyloan",applyloan);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
