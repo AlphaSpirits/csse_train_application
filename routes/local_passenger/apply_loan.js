@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const User=require('../../model/admin/temp_local_user_account');
+const User=require('../../model/users/local_passenger');
 const constants=require('../../constants');
 
 //update loan amount and status 
