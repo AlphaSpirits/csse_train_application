@@ -14,12 +14,17 @@ const constants=require('../../constants');
 router.post('/signup', (req, res, next) => {
 
     //take date after one month
-    const todayDate = new Date();
-    const dd = todayDate.getDate();
-    const mm = todayDate.getMonth() + 1;
-    const y = todayDate.getFullYear();
+   /* var todayDate = new Date();
+    console.log(todayDate);
+    var dd = todayDate.getDate();
+    var mm = todayDate.getMonth() + 1;
+    console.log(mm);
+    var y = todayDate.getFullYear();
 
-    var dateAfterOneMonth = dd + '/'+ mm + '/'+ y;
+    var dateAfterOneMonth = dd + '/'+ mm + '/'+ y;*/
+    var n=1; //number of days to add.
+    var today=new Date(); //Today's Date
+    var dateAfterOneMonth=new Date(today.getFullYear(),today.getMonth()+n,today.getDate());
 
     //check input email is already available
     User.find({email: req.body.email})
