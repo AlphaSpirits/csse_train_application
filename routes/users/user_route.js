@@ -8,6 +8,7 @@ const User = require('../../model/users/user');
 const Manager = require('../../model/users/manager');
 const Localpassenger = require('../../model/users/local_passenger');
 const Foreignpassenger = require('../../model/users/foreign_passenger');
+const Inspector = require('../../model/transportManager/inspectors');
 const constants=require('../../constants');
 
 //Sign Up
@@ -104,6 +105,21 @@ router.post('/signup', (req, res, next) => {
                                         refUserId: id_user
                                     });
                                     foreignpassenger
+                                        .save()
+                                }
+                                //save inspector
+                                if(result.utype = 4){
+                                    const inspector = new Inspector({
+                                        _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
+                                        assignedroute: req.body.assignedroute,
+                                        username: req.body.uname,
+                                        password: hash,
+                                        name: req.body.name,
+                                        emailaddress: req.body.email,
+                                        phone: req.body.phone,
+                                        refUserId: id_user
+                                    });
+                                    inspector
                                         .save()
                                 }
                                 res.status(201).json({
