@@ -1,8 +1,8 @@
- const LOAN_STATUS=0;
-const FINE_STATUS=0;
+ const LOAN_STATUS=1;
+const FINE_STATUS=1;
 const INITIAL_AMAOUNT_STATUS=0;
-const LOAN_AMOUNT=0;
-const FINE_AMOUNT=0;
+const LOAN_AMOUNT=500;
+const FINE_AMOUNT=600;
 
 module.exports = {
     LOAN_STATUS,

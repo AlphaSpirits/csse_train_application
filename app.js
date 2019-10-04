@@ -7,7 +7,9 @@ const cors = require('cors');
 
 //calling routes
 const train = require("./routes/admin/trains");
-const addcredits = require("./routes/Passenger/add_credits");
+const addcredits = require("./routes/local_passenger/add_credits");
+const extendexpiredate = require("./routes//foreign_passenger/extend_expiary_date");
+const applyloan=require("./routes/local_passenger/apply_loan");
 
 //db connection
 
@@ -34,6 +36,8 @@ app.use(cors());
 //using routes
 app.use("/train", train);
 app.use("/addcredits", addcredits);
+app.use("/extentexpiarydate",extendexpiredate);
+app.use("/applyloan",applyloan);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));

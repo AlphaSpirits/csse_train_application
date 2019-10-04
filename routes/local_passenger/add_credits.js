@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const User=require('../../model/admin/temp_local_user_account');
 const constants=require('../../constants');
 
-//post train
+//post temp local users
 router.post("/", (req, res, next) => {
     const user = new User({
       _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
@@ -31,7 +31,7 @@ router.post("/", (req, res, next) => {
     });
   });
 
-   //get train
+   //get temp local users
    router.get("/", (req, res, next) => {
     User.find()
       .select("_id userid loanstatus finestatus cardtype cardnumber amount initialamountstatus loanamount fineamount")
@@ -69,5 +69,37 @@ router.post("/", (req, res, next) => {
         });
       });
   });
+
+  //get local user details for the given user id
+  router.get("/id/:id", (req, res, next) => {
+    const id = req.params.id;
+    User.findOne({ userid: req.params.id })
+      .select("_id userid loanstatus finestatus cardtype cardnumber amount initialamountstatus loanamount fineamount")
+      .exec()
+      .then(result => {
+        res.status(200).json({ result });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
+  //update (amount), (loan details), (fine details) of local user
+    router.put("/id/:userid", function(req, res, next) {
+      User.findByIdAndUpdate({ _id: req.params.userid }, req.body).then(
+        function() {
+          User.findOne({ _id: req.params.userid })
+            .then(function(user) {
+              res.send(user);
+            })
+            .catch(next);
+        }
+      );
+    });
+
+
    
   module.exports=router;
