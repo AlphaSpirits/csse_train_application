@@ -10,7 +10,8 @@ const train = require("./routes/admin/trains");
 const addcredits = require("./routes/Passenger/add_credits");
 const UserRoutes = require("./routes/users/user_route");
 const ManagerRoutes = require("./routes/users/managerroute");
-const LocalPassenger = require("./routes/users/local_passenger_route");
+const LocalPassenger = require("./routes/users/local_passengerroute");
+const ForeignPassenger = require("./routes/users/foreign_passenger_route");
 
 //db connection
 
@@ -41,6 +42,7 @@ app.use("/api", require("./routes/api/invalidjourneydetails"));
 app.use("/user", UserRoutes);
 app.use("/manager", ManagerRoutes);
 app.use("/localPassenger", LocalPassenger);
+app.use("/foreignPassenger", ForeignPassenger);
 
 //error handling middleware
 app.use(function(err, req, res, next) {

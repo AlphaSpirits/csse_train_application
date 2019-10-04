@@ -7,10 +7,19 @@ const jwt = require('jsonwebtoken');
 const User = require('../../model/users/user');
 const Manager = require('../../model/users/manager');
 const Localpassenger = require('../../model/users/local_passenger');
+const Foreignpassenger = require('../../model/users/foreign_passenger');
 const constants=require('../../constants');
 
 //Sign Up
 router.post('/signup', (req, res, next) => {
+
+    //take date after one month
+    const todayDate = new Date();
+    const dd = todayDate.getDate();
+    const mm = todayDate.getMonth() + 1;
+    const y = todayDate.getFullYear();
+
+    var dateAfterOneMonth = dd + '/'+ mm + '/'+ y;
 
     //check input email is already available
     User.find({email: req.body.email})
@@ -72,18 +81,25 @@ router.post('/signup', (req, res, next) => {
                                     });
                                     localpassenger
                                         .save()
-                                        .then(result => {
-                                            console.log(result)
-                                            res.status(201).json({
-                                                message: 'Local user has been created'
-                                            })
-                                        })
-                                        .catch(err => {
-                                            console.log(err)
-                                            res.status(500).json({
-                                                error: err
-                                            })
-                                        });
+                                }
+                                //save foreign user
+                                if(result.utype = 3){
+                                    const foreignpassenger = new Foreignpassenger({
+                                        _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
+                                        fPassengerName: req.body.fPassengerName,
+                                        fPassengerAge: req.body.fPassengerAge,
+                                        fPassengerPassportNumber: req.body.fPassengerPassportNumber,
+                                        finestatus: constants.FINE_STATUS,
+                                        cardtype: req.body.cardtype,
+                                        cardnumber: req.body.cardnumber,
+                                        amount: req.body.amount,
+                                        initialamountstatus: constants.INITIAL_AMAOUNT_STATUS,
+                                        fineamount: constants.FINE_AMOUNT,
+                                        expireDate: dateAfterOneMonth,
+                                        refUserId: id_user
+                                    });
+                                    foreignpassenger
+                                        .save()
                                 }
                                 res.status(201).json({
                                     message: 'User has been created',
