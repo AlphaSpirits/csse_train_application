@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 
-const InvalidJourneyDetailsSchema = new Schema({
+const FineInformationSchema = new Schema({
   userID: {
     type: String,
     required: true
@@ -37,10 +37,16 @@ const InvalidJourneyDetailsSchema = new Schema({
   },
   hour: {
     type: String
+  },
+  fine: {
+    type: String
+  },
+  emaila: {
+    type: String
   }
 });
 
-module.exports = InvalidJourneyDetails = mongoose.model(
-  "invalidJourneyDetails",
-  InvalidJourneyDetailsSchema
+module.exports = FineInformation = mongoose.model(
+  "fineInformation",
+  FineInformationSchema
 );
