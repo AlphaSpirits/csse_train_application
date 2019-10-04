@@ -15,7 +15,10 @@ const applyloan=require("./routes/local_passenger/apply_loan");
 const LocalPassenger = require("./routes/users/local_passengerroute");
 const ForeignPassenger = require("./routes/users/foreign_passenger_route");
 const getlocalusers=require("./routes/local_passenger/get_local_user_details");
-
+const localpassengerinitialamount=require("./routes/local_passenger/initial_amount_payment");
+const localpassengergetbalance=require("./routes/local_passenger/check_balance");
+const forignpassengergetbalance=require("./routes/foreign_passenger/check_balance");
+const viewjourneydetails=require("./routes/local_passenger/journey_details");
 //db connection
 
 mongoose.connect(
@@ -49,7 +52,10 @@ app.use("/manager", ManagerRoutes);
 app.use("/localPassenger", LocalPassenger);
 app.use("/foreignPassenger", ForeignPassenger);
 app.use("/getlocalpassengers",getlocalusers);
-
+app.use("/localinitialamount",localpassengerinitialamount);
+app.use("/localpassengergetbalance",localpassengergetbalance);
+app.use("/foreignpassengergetbalance",forignpassengergetbalance);
+app.use("/journeydetails",viewjourneydetails);
 
 //error handling middleware
 app.use(function(err, req, res, next) {

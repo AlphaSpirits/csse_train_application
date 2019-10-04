@@ -20,7 +20,7 @@ router.post("/journeydetails", function(req, res, next) {
   var fomatted_currentdate = moment(currentdate.toString()).format(
     "YYYY-DD-MM"
   );
-  
+   
 
   if (req.body.journeryDate == fomatted_currentdate) {
     ValidJourneydetails.create(req.body)
