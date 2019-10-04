@@ -5,11 +5,18 @@ const bodyPorser=require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-//calling routes
+//Importing routes
 const train = require("./routes/admin/trains");
+<<<<<<< HEAD
 const addcredits = require("./routes/local_passenger/add_credits");
 const extendexpiredate = require("./routes//foreign_passenger/extend_expiary_date");
 const applyloan=require("./routes/local_passenger/apply_loan");
+=======
+const addcredits = require("./routes/Passenger/add_credits");
+const UserRoutes = require("./routes/users/user_route");
+const ManagerRoutes = require("./routes/users/managerroute");
+const LocalPassenger = require("./routes/users/local_passenger_route");
+>>>>>>> bccb1405be72c7b84912cefe94efa508409db906
 
 //db connection
 
@@ -21,9 +28,7 @@ mongoose.connect(
 );
 
 
-
-
-//using dependencies
+//use of dependencies
 app.use(morgan("dev"));
 app.use(bodyPorser.urlencoded({ extended: false }));
 app.use(bodyPorser.json());
@@ -33,7 +38,7 @@ app.use(cors());
 
 
 
-//using routes
+//use of routes
 app.use("/train", train);
 app.use("/addcredits", addcredits);
 app.use("/extentexpiarydate",extendexpiredate);
@@ -41,6 +46,9 @@ app.use("/applyloan",applyloan);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
+app.use("/user", UserRoutes);
+app.use("/manager", ManagerRoutes);
+app.use("/localPassenger", LocalPassenger);
 
 //error handling middleware
 app.use(function(err, req, res, next) {
