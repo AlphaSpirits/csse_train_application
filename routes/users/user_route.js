@@ -168,7 +168,8 @@ router.post('/login', (req, res, next) => {
                         );
                     return res.status(200).json({
                         message: 'Authentication successful',
-                        token: token
+                        token: token,
+                        utype: user[0].utype
                     });
                 }
                 return res.status(401).json({
