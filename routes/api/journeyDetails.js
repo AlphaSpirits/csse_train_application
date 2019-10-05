@@ -35,6 +35,7 @@ router.post("/journeydetails", function(req, res, next) {
     .format("YYYY-DD-MM");
 
   var currentdate = new Date();
+
   var fomatted_currentdate = moment(currentdate.toString())
     .tz("GMT")
     .format("YYYY-DD-MM");
@@ -52,6 +53,7 @@ router.post("/journeydetails", function(req, res, next) {
   console.log(fomatted_currentdate);
 
   //Token Validity check
+
 
   if (fomatted_journeydate == fomatted_currentdate) {
     ValidJourneydetails.create(req.body)
