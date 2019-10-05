@@ -1,4 +1,4 @@
-const express = require("express");
+  const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
@@ -79,7 +79,7 @@ router.post('/signup', (req, res, next) => {
                                         finestatus: constants.FINE_STATUS,
                                         cardtype: req.body.cardtype,
                                         cardnumber: req.body.cardnumber,
-                                        amount: req.body.amount,
+                                        amount: constants.INITIAL_AMOUNT,
                                         initialamountstatus: constants.INITIAL_AMAOUNT_STATUS,
                                         loanamount: constants.LOAN_AMOUNT,
                                         fineamount: constants.FINE_AMOUNT,
@@ -98,7 +98,7 @@ router.post('/signup', (req, res, next) => {
                                         finestatus: constants.FINE_STATUS,
                                         cardtype: req.body.cardtype,
                                         cardnumber: req.body.cardnumber,
-                                        amount: req.body.amount,
+                                        amount: constants.INITIAL_AMOUNT,
                                         initialamountstatus: constants.INITIAL_AMAOUNT_STATUS,
                                         fineamount: constants.FINE_AMOUNT,
                                         expireDate: dateAfterOneMonth,
@@ -168,7 +168,8 @@ router.post('/login', (req, res, next) => {
                         );
                     return res.status(200).json({
                         message: 'Authentication successful',
-                        token: token
+                        token: token,
+                        utype: user[0].utype
                     });
                 }
                 return res.status(401).json({
