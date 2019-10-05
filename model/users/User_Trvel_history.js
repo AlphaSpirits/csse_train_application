@@ -29,10 +29,11 @@ const usertravelDetailsSchema = new Schema({
         type: Number,
         required: true
     },
-    routeName: {
+    routeID: {
         type: String,
         required: true
     }
+
 });
 
 

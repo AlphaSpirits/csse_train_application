@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const DriverDetailsSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+
     DiverID: {
         type: String,
         required: true
@@ -18,9 +20,9 @@ const DriverDetailsSchema = new Schema({
         required: true
     },
     Phone: {
-        type: Number,
+        type: String,
         required: true
-    },
+    }
 
 });
 

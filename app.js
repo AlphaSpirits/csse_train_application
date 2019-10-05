@@ -7,6 +7,10 @@ const cors = require('cors');
 
 //Importing routes
 const train = require("./routes/admin/trains");
+const Driver =require("./routes/admin/Driver_route");
+const Vehicle =require("./routes/admin/Vehicle_route");
+const userhistroy = require("./routes/users/User_trvl_histry_route");
+const routedetails_ = require("./routes/admin/Route_details_route");
 const UserRoutes = require("./routes/users/user_route");
 const ManagerRoutes = require("./routes/users/managerroute");
 const addcredits = require("./routes/local_passenger/add_credits");
@@ -38,6 +42,10 @@ app.use(cors());
 
 //use of routes
 app.use("/train", train);
+app.use("/vehicle", Vehicle);
+app.use("/driver", Driver);
+app.use("/route",userhistroy);
+app.use("/RouteDetails",routedetails_);
 app.use("/addcredits", addcredits);
 app.use("/extentexpiarydate",extendexpiredate);
 app.use("/applyloan",applyloan);

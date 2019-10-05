@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const vehicleDetailsSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+
     Regnumber: {
         type: String,
         required: true
@@ -24,7 +26,7 @@ const vehicleDetailsSchema = new Schema({
     type: {
         type: String,
         required: true
-    },
+    }
 });
 
 module.exports = mongoose.model('vehicle', vehicleDetailsSchema);
