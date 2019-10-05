@@ -47,6 +47,24 @@ router.get("/", (req, res, next) => {
         });
 });
 
+//get specific user data
+router.get("/id/:id", (req, res, next) => {
+    const id = req.params.id;
+    LocalPassenger.findOne({ refUserId: req.params.id })
+        .select("_id refUserId initialamountstatus")
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json({ result });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 //delete local passenger
 router.delete("/:localPassengerId", (req, res, next) => {
     LocalPassenger.remove({ _id: req.params.localPassengerId })

@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
     var y = todayDate.getFullYear();
 
     var dateAfterOneMonth = dd + '/'+ mm + '/'+ y;*/
-    var n=1; //number of days to add.
+    var n=1; //number of months to add.
     var today=new Date(); //Today's Date
     var dateAfterOneMonth=new Date(today.getFullYear(),today.getMonth()+n,today.getDate());
 
@@ -169,7 +169,8 @@ router.post('/login', (req, res, next) => {
                     return res.status(200).json({
                         message: 'Authentication successful',
                         token: token,
-                        utype: user[0].utype
+                        utype: user[0].utype,
+                        id: user[0]._id
                     });
                 }
                 return res.status(401).json({

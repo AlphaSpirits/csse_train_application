@@ -46,6 +46,24 @@ router.get("/", (req, res, next) => {
         });
 });
 
+//get specific foreign user data
+router.get("/id/:id", (req, res, next) => {
+    const id = req.params.id;
+    ForeignPassenger.findOne({ refUserId: req.params.id })
+        .select("_id refUserId expireDate")
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json({ result });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 //delete foreign passenger
 /*router.delete("/:foreignPassengerId", (req, res, next) => {
     ForeignPassenger.remove({ _id: req.params.foreignPassengerId })
