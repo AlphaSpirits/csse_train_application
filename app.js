@@ -20,6 +20,7 @@ const localpassengergetbalance=require("./routes/local_passenger/check_balance")
 const forignpassengergetbalance=require("./routes/foreign_passenger/check_balance");
 const viewjourneydetails=require("./routes/local_passenger/journey_details");
 const updatexpiarydate=require("./routes/foreign_passenger/updatedate");
+const practise=require("./routes/trial/train");
 //db connection
 
 mongoose.connect(
@@ -28,6 +29,8 @@ mongoose.connect(
         useNewUrlParser: true
     }
 );
+
+
 
 
 //use of dependencies
@@ -59,6 +62,7 @@ app.use("/localpassengergetbalance",localpassengergetbalance);
 app.use("/foreignpassengergetbalance",forignpassengergetbalance);
 app.use("/journeydetails",viewjourneydetails);
 app.use("/updatedate",updatexpiarydate);
+app.use("/practise",practise);
 
 //error handling middleware
 app.use(function(err, req, res, next) {
