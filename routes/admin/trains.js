@@ -7,7 +7,7 @@ const Train=require('../../model/admin/train');
 router.post("/", (req, res, next) => {
     const train = new Train({
       _id: new mongoose.Types.ObjectId(), //construcyor function automatically create and give a new & unique id
-      tname: req.body.tname,
+        routeID: req.body.tname,
       startstation: req.body.startstation,
       destination: req.body.destination,
       distance: req.body.distance,

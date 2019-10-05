@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const RouteDetailsSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     routeID: {
         type: String,
         required: true
@@ -24,7 +25,7 @@ const RouteDetailsSchema = new Schema({
     fare: {
         type: Number,
         required: true
-    },
+    }
 });
 
 
