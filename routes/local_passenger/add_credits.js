@@ -37,7 +37,7 @@ router.post("/", (req, res, next) => {
 
   //update (amount), (loan details), (fine details) of local user
     router.put("/id/:userid", function(req, res, next) {
-      User.findByIdAndUpdate({ _id: req.params.userid }, req.body).then(
+      User.findById({ _id: req.params.userid }, req.body).then(
         function() {
           User.findOne({ _id: req.params.userid })
             .then(function(user) {
