@@ -61,5 +61,33 @@ router.post("/", (req, res, next) => {
         });
       });
   });
+
+  router.get("/id/:id", (req, res, next) => {
+    const id = req.params.id;
+    Train.findOne({ _id: req.params.id })
+      .select("_id tname startstation")
+      .exec()
+      .then(result => {
+        res.status(200).json({ result });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
+  router.put("/id/:userid", function(req, res, next) {
+    Train.findByIdAndUpdate({ _id: req.params.userid }, req.body).then(
+      function() {
+        Train.findOne({ _id: req.params.userid })
+          .then(function(user) {
+            res.send(user);
+          })
+          .catch(next);
+      }
+    );
+  });
    
   module.exports=router;
