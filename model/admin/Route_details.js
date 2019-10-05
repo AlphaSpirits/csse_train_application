@@ -27,7 +27,5 @@ const RouteDetailsSchema = new Schema({
     },
 });
 
-module.exports = RouteDetails = mongoose.model(
-    "routeDetails",
-    RouteDetailsSchema
-);
+
+module.exports = mongoose.model('route', RouteDetailsSchema);

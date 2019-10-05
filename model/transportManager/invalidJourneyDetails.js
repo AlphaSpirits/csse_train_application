@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -32,6 +31,12 @@ const InvalidJourneyDetailsSchema = new Schema({
   routeName: {
     type: String,
     required: true
+  },
+  day: {
+    type: String
+  },
+  hour: {
+    type: String
   }
 });
 

@@ -19,6 +19,7 @@ const localpassengerinitialamount=require("./routes/local_passenger/initial_amou
 const localpassengergetbalance=require("./routes/local_passenger/check_balance");
 const forignpassengergetbalance=require("./routes/foreign_passenger/check_balance");
 const viewjourneydetails=require("./routes/local_passenger/journey_details");
+const updatexpiarydate=require("./routes/foreign_passenger/updatedate");
 //db connection
 
 mongoose.connect(
@@ -47,6 +48,7 @@ app.use("/applyloan",applyloan);
 app.use("/api", require("./routes/api/inspectors"));
 app.use("/api", require("./routes/api/journeyDetails"));
 app.use("/api", require("./routes/api/invalidjourneydetails"));
+app.use("/api", require("./routes/api/fineinformation"));
 app.use("/user", UserRoutes);
 app.use("/manager", ManagerRoutes);
 app.use("/localPassenger", LocalPassenger);
@@ -56,6 +58,7 @@ app.use("/localinitialamount",localpassengerinitialamount);
 app.use("/localpassengergetbalance",localpassengergetbalance);
 app.use("/foreignpassengergetbalance",forignpassengergetbalance);
 app.use("/journeydetails",viewjourneydetails);
+app.use("/updatedate",updatexpiarydate);
 
 //error handling middleware
 app.use(function(err, req, res, next) {
