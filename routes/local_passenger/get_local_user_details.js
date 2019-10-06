@@ -47,8 +47,8 @@ router.get("/", (req, res, next) => {
   //get local user details for the given user id
   router.get("/id/:id", (req, res, next) => {
     const id = req.params.id;
-    User.findOne({ userid: req.params.id })
-      .select("_id refUserId loanstatus finestatus cardtype cardnumber amount initialamountstatus loanamount fineamount")
+    User.findOne({ refUserId: req.params.id })
+      .select("_id lPassengerName refUserId loanstatus finestatus cardtype cardnumber amount initialamountstatus loanamount fineamount")
       .exec()
       .then(result => {
         res.status(200).json({ result });
