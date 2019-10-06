@@ -32,53 +32,29 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://localhost:3000/getlocalpassengers/id/" + $idd,
+                url: "http://localhost:3000/getforeignusers/id/" + $idd,
                 success: function (data) {
                     console.log(data.result);
-                    var subsamount = (data.result.fineamount) + (data.result.loanamount);
-                    var total = tamount - subsamount;
+                   
+                    
+                    var fineamount=data.result.fineamount
+                    var total = tamount - fineamount;
+                    
                     var idob = data.result._id;
                     console.log("fine amount " + data.result.fineamount);
                     console.log("fine status " + data.result.finestatus);
-                    console.log("loan amount " + data.result.loanamount);
-                    console.log("loan status " + data.result.loanstatus);
                     console.log("_id " + idob);
-                    console.log("subs amount " + subsamount);
+                    console.log("fineamount " + fineamount);
                     console.log("total amount " + total);
 
 
-                    if (subsamount >= total) {
+                    if (fineamount >= total) {
 
                         alert("Not a sufficient amount");
                     } else {
 
-                        //update loan
-                        if (data.result.loanstatus != 0) {
-                            //update loan
-                            $.put = function (url, data, callback, type) {
-
-                                if ($.isFunction(data)) {
-                                    type = type || callback,
-                                        callback = data,
-                                        data = {}
-                                }
-
-                                return $.ajax({
-                                    url: url,
-                                    type: 'PUT',
-                                    success: callback,
-                                    data: data,
-                                    contentType: type
-                                });
-                            }
-                            var $idd = idob;
-
-
-                            $.put('http://localhost:3000/applyloan/id/' + $idd, { loanstatus: 0, loanamount: 0 }, function (result) {
-                                console.log(result);
-                            })
-                            console.log("loan updated");
-                        }
+                    var remamount=data.result.amount;
+                    var finaltotal=remamount+total;
 
                         if (data.result.finestatus != 0) {
                             //update fine
@@ -101,7 +77,7 @@
                             var $idd = idob;
 
 
-                            $.put('http://localhost:3000/applyloan/id/' + $idd, { finestatus: 0, fineamount: 0 }, function (result) {
+                            $.put('http://localhost:3000/forignfine/id/' + $idd, { finestatus: 0, fineamount: 0 }, function (result) {
                                 console.log(result);
                             })
                             console.log("fine updated");
@@ -128,13 +104,17 @@
                         var $idd = idob;
 
 
-                        $.put('http://localhost:3000/applyloan/id/' + $idd, { amount: total }, function (result) {
+                        $.put('http://localhost:3000/forignfine/id/' + $idd, { amount: finaltotal }, function (result) {
                             console.log(result);
                         })
-                        alert("Your account recharged by "+tamount+" and your current balance is "+total);
+                        alert("Your account recharged by "+tamount+" and your current balance is "+finaltotal);
 
                     }
+                },
+                error: function() {
+      alert("Invalid Userid");
                 }
+                
             });
 
         }
@@ -153,7 +133,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../html/local_passenger.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../html/foreign_passenger_dashboard.html">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

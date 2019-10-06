@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Apply Loan</title>
+    <title>view balance</title>
     <script src="https://kit.fontawesome.com/0e0930589e.js"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -28,74 +28,26 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://localhost:3000/getlocalpassengers/id/" + $idd,
+                url: "http://localhost:3000/getforeignusers/id/" + $idd,
                 success: function (data) {
                     console.log(data.result);
 
                     var idob = data.result._id;
                     console.log("fine amount " + data.result.fineamount);
                     console.log("fine status " + data.result.finestatus);
-                    console.log("loan amount " + data.result.loanamount);
-                    console.log("loan status " + data.result.loanstatus);
+                    
                     console.log("_id " + idob);
 
                     var $table = $("#tbl");
-                    $table.append("<td>" + data.result.lPassengerName + "</td>");
+                    $table.append("<td>" + data.result.fPassengerName + "</td>");
                     $table.append("<td>Rs " + data.result.amount + ".00</td>");
-                    $table.append("<td>Rs " + data.result.loanamount + ".00</td>");
                     $table.append("<td>Rs " + data.result.fineamount + ".00</td>");
 
                 }
             });
         }
         //apply loan
-        function applyloan() {
-            var userid = $('#userid').val();
-            var $idd = userid;
-            console.log(userid);
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "http://localhost:3000/getlocalpassengers/id/" + $idd,
-                success: function (data) {
-                    console.log(data.result);
-
-                    var idob = data.result._id;
-                    console.log("fine amount " + data.result.fineamount);
-                    console.log("fine status " + data.result.finestatus);
-                    console.log("loan amount " + data.result.loanamount);
-                    console.log("loan status " + data.result.loanstatus);
-                    console.log("_id " + idob);
-                    if (data.result.loanamount > 0) {
-                        alert("cannot apply for a loan, You already have one");
-                    } else {
-                        $.put = function (url, data, callback, type) {
-
-                            if ($.isFunction(data)) {
-                                type = type || callback,
-                                    callback = data,
-                                    data = {}
-                            }
-
-                            return $.ajax({
-                                url: url,
-                                type: 'PUT',
-                                success: callback,
-                                data: data,
-                                contentType: type
-                            });
-                        }
-                        var $idd = idob;
-
-
-                        $.put('http://localhost:3000/applyloan/id/' + $idd, { loanstatus: 1, loanamount: 500 }, function (result) {
-                            console.log(result);
-                        })
-                        console.log("loan updated");
-                    }
-                }
-            });
-        }
+        
 
     </script>
 
@@ -114,7 +66,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../html/local_passenger.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="../html/foreign_passenger_dashboard.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </form>
@@ -122,7 +74,7 @@
     </nav>
     <!--container 1 for heading-->
     <div class="jumbotron">
-        <h1 class="display-3" style="text-align: center">View Balance and apply for Loan</h1>
+        <h1 class="display-3" style="text-align: center">View Balance</h1>
 
         <hr class="my-4">
 
@@ -154,7 +106,6 @@
                     <tr>
                         <th scope="col">name</th>
                         <th scope="col">Current Balance </th>
-                        <th scope="col">Loan Applied</th>
                         <th scope="col">penalty</th>
                     </tr>
                 </thead>
@@ -170,29 +121,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <p></p>
-    </div>
-    <div class="row">
-        <p></p>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <p></p>
-        </div>
-        <div class="col-sm-8">
-            <div class="jumbotron">
-                <p>You cannot apply for a loan if you alread have one</p>
-                <hr class="my-4">
-
-                <div class="col-sm-8"><button type="button" class="btn btn-warning" onclick="applyloan()">Apply
-                        Loan</button></div>
-            </div>
-        </div>
-
-
-
-    </div>
+    
 
 
 </body>

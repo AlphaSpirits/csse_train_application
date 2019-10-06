@@ -22,9 +22,10 @@ var fineamountt=5555;
        });
     });
 
-router.put("/id/:userid/:date", function(req, res, next) {
-    console.log("date "+req.params.date);
-    var day=req.params.date;
+router.put("/id/:userid", function(req, res, next) {
+    //console.log("date "+req.params.date);
+    var day=new Date();
+    console.log("day "+day);
     var dd=moment(day).add('months', 2);
     const formatted=new moment(dd,'yyyyMMddHHmmssfff').toDate()
     console.log("substracted date "+formatted);
