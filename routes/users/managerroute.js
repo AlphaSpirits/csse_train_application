@@ -36,6 +36,18 @@ router.get("/", (req, res, next) => {
             });
         });
 });
+//update
+router.put("/id/:managerid", function(req, res, next) {
+    Manager.findByIdAndUpdate({ _id: req.params.managerid }, req.body).then(
+        function() {
+            Manager.findOne({ _id: req.params.managerid })
+                .then(function(manager) {
+                    res.send(manager);
+                })
+                .catch(next);
+        }
+    );
+});
 
 //delete manager
 router.delete("/:managerId", (req, res, next) => {
