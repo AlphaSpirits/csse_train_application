@@ -46,7 +46,7 @@
                             var initial_amount_status = data.result.initialamountstatus;
                             if (initial_amount_status == 1){
                                 //to be changed
-                                window.location.href = "../html/PublicTransportManagerFunctions.html";
+                                window.location.href = "../html/local_passenger.html";
                             }else{
                                 alert("Do your payments first");
                                 //to be changed
@@ -71,7 +71,7 @@
                            // console.log(moddate);
                             if(moddate >= date2){
                                 //to be changed
-                                window.location.href = "../html/PublicTransportManagerFunctions.html";
+                                window.location.href = "../html/foreign_passenger.html";
                             }else{
                                 alert('Your account has been axpired');
                             }
@@ -81,7 +81,7 @@
                 }
                 if(response.utype == 4){//inspector
                     //to be changed into inspector page
-                    window.location.href = "../html/PublicTransportManagerFunctions.html";
+                    window.location.href = "../html/InspectorFunctions.html";
                 }
             });
         }
@@ -99,7 +99,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="../../../index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

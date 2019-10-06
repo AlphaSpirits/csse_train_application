@@ -64,6 +64,7 @@
                    ManagerAge:mage};
                $.post('http://localhost:3000/user/signup', objectToSend , function(response){
                    console.log(response);
+                   alert(response.message);
                });
 
            }
