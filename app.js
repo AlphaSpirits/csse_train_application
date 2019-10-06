@@ -20,6 +20,9 @@ const addfine = require("./routes/local_passenger/apply_loan");
 const LocalPassenger = require("./routes/users/local_passengerroute");
 const ForeignPassenger = require("./routes/users/foreign_passenger_route");
 const getlocalusers = require("./routes/local_passenger/get_local_user_details");
+const getforeignusers=require("./routes/foreign_passenger/get_foreign_user_details");
+const journeyDetails=require("./routes/local_passenger/journey_details");
+const forignfine=require("./routes/foreign_passenger/updatefine");
 
 //db connection
 
@@ -63,6 +66,10 @@ app.use("/localPassenger/addfine", LocalPassenger);
 app.use("/foreignPassenger", ForeignPassenger);
 app.use("/getlocalpassengers", getlocalusers);
 app.use("/localpassengers", require("./routes/users/local_passengerroute"));
+app.use("/journeyDetails",journeyDetails);
+app.use("/getforeignusers",getforeignusers);
+app.use("/forignfine",forignfine);
+
 
 //error handling middleware
 app.use(function(err, req, res, next) {

@@ -31,7 +31,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://localhost:3000/getlocalpassengers/id/" + $idd,
+                url: "http://localhost:3000/getforeignusers/id/" + $idd,
                 success: function (data) {
                     console.log(data.result);
                     var subsamount = (data.result.fineamount) + (data.result.loanamount);
@@ -70,7 +70,7 @@
                         var $idd = idob;
 
 
-                        $.put('http://localhost:3000/applyloan/id/' + $idd, { amount: 1000,initialamountstatus:1 }, function (result) {
+                        $.put('http://localhost:3000/forignfine/id/' + $idd, { amount: 1000,initialamountstatus:1 }, function (result) {
                             console.log(result);
                         })
                         alert("Your account has been rechrged by 1000");
@@ -98,7 +98,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="../html/local_passenger.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="../html/foreign_passenger_dashboard.html">Home<span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </form>
